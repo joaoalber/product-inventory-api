@@ -4,28 +4,17 @@ module Mutations
       field :product, Types::ProductType, null: false
 
       argument :name, String, required: true
-      argument :description, String
+      argument :description, String, required: false
       argument :archived, Boolean, required: true
       argument :price, Float, required: true
       argument :quantity, Integer, required: true
       argument :categories, [String], required: true
 
-      def resolve(
-        name:,
-        description:,
-        archived:,
-        price:,
-        quantity:,
-        categories:
-      )
-        product = Product.new(
-          name: name,
-          description: description,
-          archived: archived,
-          price: price,
-          quantity: quantity,
-          categories: categories
-        )
+      def resolve(name:, description: nil, archived:, 
+                  price:, quantity:, categories:)
+
+        product = Product.new(name: name, description: description, archived: archived,
+                              price: price, quantity: quantity, categories: categories)
 
         if product.save
           { product: product, errors: [] }
