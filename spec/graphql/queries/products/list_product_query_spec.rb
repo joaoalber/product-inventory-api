@@ -39,8 +39,6 @@ module Queries
               categories: ['amazing products'], price: 8.0, archived: true) 
             }
 
-            puts response.body
-
             json = JSON.parse(response.body)
             response = json['data']['listProductQuery']
 
