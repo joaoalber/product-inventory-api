@@ -6,7 +6,7 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.boolean :archived, null: false
       t.float :price, null: false
       t.integer :quantity, null: false
-      t.text :categories, array: false, default: [].to_yaml, null: false
+      t.text :categories, array: true, null: false
 
       t.timestamps
     end
