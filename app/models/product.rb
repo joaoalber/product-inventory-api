@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  has_paper_trail ignore: [:name, :description, :archived, :price, :categories]
 
   scope :archived, ->(archived) { where(archived: archived) }
   scope :categories, ->(categories) { where('categories @> ARRAY[?]::text[]', categories) }
